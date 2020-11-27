@@ -27,6 +27,7 @@ class SimpleShoppingAcceptanceTest {
             salesTaxes = 0.0
         )
         assertEquals(expectedReceipt, actualReceipt)
+        assertEquals(12.49 + 0.85, actualReceipt.getTotal(), 0.0)
     }
 
     @Test
@@ -48,5 +49,6 @@ class SimpleShoppingAcceptanceTest {
             salesTaxes = 0.0
         )
         assertEquals(expectedReceipt, actualReceipt)
+        assertEquals(12.49 + 2.55 + 19.5, actualReceipt.getTotal(), 0.0)
     }
 }
