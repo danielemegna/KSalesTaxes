@@ -13,3 +13,9 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
     testCompile group: 'junit', name: 'junit', version: '4.13'
 }
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
