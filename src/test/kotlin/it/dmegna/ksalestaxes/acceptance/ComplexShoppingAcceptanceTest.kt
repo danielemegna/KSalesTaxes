@@ -15,8 +15,8 @@ class ComplexShoppingAcceptanceTest {
     @Test
     fun `working with basic taxed products`() {
         val shoppingBasket = ShoppingBasket().apply {
-            add(qty = 1, description = "music CD", unitPrice = 14.99)
-            add(qty = 1, description = "bottle of perfume", unitPrice = 18.99)
+            add(qty = 1, description = "music CD", unitNetPrice = 14.99)
+            add(qty = 1, description = "bottle of perfume", unitNetPrice = 18.99)
         }
 
         val actualReceipt = cashRegister.receiptFor(shoppingBasket)

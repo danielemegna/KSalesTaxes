@@ -11,7 +11,7 @@ class CashRegister {
 
     private fun receiptItemsFrom(shoppingBasket: ShoppingBasket): List<Receipt.Item> {
         return shoppingBasket.items.map {
-            Receipt.Item(it.qty, it.description, it.unitPrice * it.qty)
+            Receipt.Item(it.qty, it.description, it.unitNetPrice * it.qty)
         }
     }
 }

@@ -13,8 +13,8 @@ class SimpleShoppingAcceptanceTest {
     @Test
     fun `working with single untaxed products`() {
         val shoppingBasket = ShoppingBasket().apply {
-            add(qty = 1, description = "book", unitPrice = 12.49)
-            add(qty = 1, description = "chocolate bar", unitPrice = 0.85)
+            add(qty = 1, description = "book", unitNetPrice = 12.49)
+            add(qty = 1, description = "chocolate bar", unitNetPrice = 0.85)
         }
 
         val actualReceipt = cashRegister.receiptFor(shoppingBasket)
@@ -28,9 +28,9 @@ class SimpleShoppingAcceptanceTest {
     @Test
     fun `working with multiple untaxed products`() {
         val shoppingBasket = ShoppingBasket().apply {
-            add(qty = 1, description = "book", unitPrice = 12.49)
-            add(qty = 3, description = "chocolate bar", unitPrice = 0.85)
-            add(qty = 2, description = "packet of headache pills", unitPrice = 9.75)
+            add(qty = 1, description = "book", unitNetPrice = 12.49)
+            add(qty = 3, description = "chocolate bar", unitNetPrice = 0.85)
+            add(qty = 2, description = "packet of headache pills", unitNetPrice = 9.75)
         }
 
         val actualReceipt = cashRegister.receiptFor(shoppingBasket)
