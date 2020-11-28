@@ -1,13 +1,10 @@
 package it.dmegna.ksalestaxes.taxes.data
 
-import it.dmegna.ksalestaxes.taxes.data.DataUtils.Companion.normalize
+data class TaxedPrice private constructor(val value: Double) {
+    operator fun times(n: Int): TaxedPrice = of(value * n)
+    operator fun plus(taxedPrice: TaxedPrice): TaxedPrice = of(value + taxedPrice.value)
 
-class TaxedPrice private constructor(val value: Double) {
     companion object {
-        fun normalized(value: Double): TaxedPrice {
-            return TaxedPrice(normalize(value))
-        }
+        fun of(value: Double) = TaxedPrice(DoubleUtil.normalize(value))
     }
-
-    operator fun times(n: Int) = TaxedPrice(value * n)
 }

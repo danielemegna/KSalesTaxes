@@ -8,15 +8,15 @@ class HappyLandTaxRules : TaxRules {
         val baseTaxRate = getBaseTaxRateFor(product)
 
         if (product.isImported)
-            return baseTaxRate + TaxRate(0.05)
+            return baseTaxRate + TaxRate.of(0.05)
 
         return baseTaxRate
     }
 
     private fun getBaseTaxRateFor(product: Product): TaxRate {
         return when (product) {
-            is GenericProduct -> TaxRate(0.10)
-            is Book, is FoodProduct, is MedicalProduct -> TaxRate(0.0)
+            is GenericProduct -> TaxRate.of(0.10)
+            is Book, is FoodProduct, is MedicalProduct -> TaxRate.of(0.0)
         }
     }
 }

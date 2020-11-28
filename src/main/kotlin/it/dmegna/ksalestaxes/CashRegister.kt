@@ -17,7 +17,7 @@ class CashRegister(
         shoppingBasket.items.forEach { shoppingBasketItem ->
             val product = productFactory.from(shoppingBasketItem.description)
             val taxRule = taxRules.getTaxRateFor(product)
-            val unitNetPrice = NetPrice(shoppingBasketItem.unitNetPrice)
+            val unitNetPrice = NetPrice.of(shoppingBasketItem.unitNetPrice)
             val unitItemTaxes = taxAmountCalculator.getFor(taxRule, unitNetPrice)
             val taxedUnitPrice = unitNetPrice + unitItemTaxes
             val taxedTotalPrice = taxedUnitPrice * shoppingBasketItem.qty

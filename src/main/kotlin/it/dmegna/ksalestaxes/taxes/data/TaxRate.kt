@@ -1,7 +1,9 @@
 package it.dmegna.ksalestaxes.taxes.data
 
-import it.dmegna.ksalestaxes.taxes.data.DataUtils.Companion.normalize
+data class TaxRate private constructor(val value: Double) {
+    operator fun plus(taxRate: TaxRate): TaxRate = of(value + taxRate.value)
 
-data class TaxRate(val value: Double) {
-    operator fun plus(taxRate: TaxRate) = TaxRate(normalize(this.value + taxRate.value))
+    companion object {
+        fun of(value: Double) = TaxRate(DoubleUtil.normalize(value))
+    }
 }

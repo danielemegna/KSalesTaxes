@@ -7,7 +7,7 @@ class HappyLandTaxesRoundRule : TaxesRoundRule {
 
     override fun round(taxAmount: TaxAmount): TaxAmount {
         val rounded = ((taxAmount.value * 20.0).roundToInt()) / 20.0
-        return TaxAmount(rounded)
+        return TaxAmount.of(rounded)
     }
 
 }
