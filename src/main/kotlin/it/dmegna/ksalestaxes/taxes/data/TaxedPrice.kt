@@ -1,9 +1,11 @@
 package it.dmegna.ksalestaxes.taxes.data
 
+import it.dmegna.ksalestaxes.taxes.data.DataUtils.Companion.normalize
+
 class TaxedPrice private constructor(val value: Double) {
     companion object {
         fun normalized(value: Double): TaxedPrice {
-            return TaxedPrice("%.2f".format(value).toDouble())
+            return TaxedPrice(normalize(value))
         }
     }
 
