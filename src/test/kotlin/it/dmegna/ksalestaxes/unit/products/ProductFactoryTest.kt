@@ -42,15 +42,29 @@ class ProductFactoryTest {
 
     @Test
     fun `keeps descriptions`() {
-        assertEquals("book", from("book").description)
-        assertEquals("music CD", from("music CD").description)
-        assertEquals("bottle of perfume", from("bottle of perfume").description)
+        assertEquals("book", productFactory.from("book").description)
+        assertEquals("music CD", productFactory.from("music CD").description)
+        assertEquals("bottle of perfume", productFactory.from("bottle of perfume").description)
     }
 
-    private fun from(description: String) = productFactory.from(description)
+    @Test
+    fun `imported products`() {
+        assertEquals(
+            FoodProduct("imported box of chocolates", isImported = true),
+            productFactory.from("imported box of chocolates")
+        )
+        assertEquals(
+            GenericProduct("imported bottle of perfume", isImported = true),
+            productFactory.from("imported bottle of perfume")
+        )
+        assertEquals(
+            FoodProduct("box of imported chocolates", isImported = true),
+            productFactory.from("box of imported chocolates")
+        )
+    }
 
     private infix fun String.shouldBecomeA(kClass: KClass<out Product>) {
-        val product = from(this)
+        val product = productFactory.from(this)
         assertTrue("$product should become a ${kClass.simpleName}", kClass.isInstance(product))
     }
 }
