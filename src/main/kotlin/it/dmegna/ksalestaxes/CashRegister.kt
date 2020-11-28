@@ -1,5 +1,6 @@
 package it.dmegna.ksalestaxes
 
+import it.dmegna.ksalestaxes.products.Product
 import it.dmegna.ksalestaxes.products.ProductFactory
 import it.dmegna.ksalestaxes.taxes.TaxAmountCalculator
 import it.dmegna.ksalestaxes.taxes.TaxRules
@@ -28,7 +29,8 @@ class CashRegister(
             val taxedPrice = unitTaxedPrice * it.qty
             val taxAmount = unitTaxAmount * it.qty
 
-            val receiptItem = Receipt.Item(it.qty, it.description, taxedPrice.value)
+            val receiptItemDescription = receiptItemDescriptionFor(product)
+            val receiptItem = Receipt.Item(it.qty, receiptItemDescription, taxedPrice.value)
             items.add(receiptItem)
 
             totalTaxAmount += taxAmount
@@ -36,6 +38,12 @@ class CashRegister(
         }
 
         return Receipt(items, totalTaxAmount.value, totalTaxedPrice.value)
+    }
+
+    private fun receiptItemDescriptionFor(it: Product): String {
+        if (it.isImported)
+            return "imported ${it.description}"
+        return it.description
     }
 
 }
