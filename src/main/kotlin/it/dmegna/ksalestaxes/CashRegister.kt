@@ -21,8 +21,7 @@ class CashRegister(
             val unitItemTaxes = taxAmountCalculator.getFor(taxRule, unitNetPrice)
             val taxedUnitPrice = unitNetPrice + unitItemTaxes
             val taxedTotalPrice = taxedUnitPrice * shoppingBasketItem.qty
-            val normalized = "%.2f".format(taxedTotalPrice.value).toDouble()
-            items.add(Receipt.Item(shoppingBasketItem.qty, shoppingBasketItem.description, normalized))
+            items.add(Receipt.Item(shoppingBasketItem.qty, shoppingBasketItem.description, taxedTotalPrice.value))
             salesTaxes += (unitItemTaxes * shoppingBasketItem.qty).value
         }
 
