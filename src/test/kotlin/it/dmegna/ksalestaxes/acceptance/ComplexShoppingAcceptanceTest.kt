@@ -3,7 +3,6 @@ package it.dmegna.ksalestaxes.acceptance
 import it.dmegna.ksalestaxes.Receipt
 import it.dmegna.ksalestaxes.ShoppingBasket
 import org.junit.Assert.assertEquals
-import org.junit.Ignore
 import org.junit.Test
 
 class ComplexShoppingAcceptanceTest {
@@ -42,7 +41,6 @@ class ComplexShoppingAcceptanceTest {
         assertEquals(29.83, actualReceipt.getTotal(), 0.0)
     }
 
-    @Ignore("WIP")
     @Test
     fun `working with imported products`() {
         val shoppingBasket = ShoppingBasket().apply {
