@@ -19,23 +19,28 @@ class ProductFactory {
         "back pain pills"
     )
 
-    fun from(description: String): Product {
-        val isImported = isImported(description)
-        return when (normalize(description)) {
-            in bookDescriptions -> Book(description, isImported)
-            in foodDescriptions -> FoodProduct(description, isImported)
-            in medicalDescriptions -> MedicalProduct(description, isImported)
-            else -> GenericProduct(description, isImported)
-        }
+    fun from(rawDescription: String): Product {
+        val description = normalize(rawDescription)
+        val isImported = isImported(rawDescription)
+        return buildProduct(description, isImported)
     }
-
-    private fun isImported(description: String) = description.contains(IMPORTED_PRODUCT_LABEL)
 
     private fun normalize(description: String): String {
         return description
             .split(" ")
             .filter { it != IMPORTED_PRODUCT_LABEL }
             .joinToString(" ")
+    }
+
+    private fun isImported(description: String) = description.contains(IMPORTED_PRODUCT_LABEL)
+
+    private fun buildProduct(description: String, isImported: Boolean): Product {
+        return when (description) {
+            in bookDescriptions -> Book(description, isImported)
+            in foodDescriptions -> FoodProduct(description, isImported)
+            in medicalDescriptions -> MedicalProduct(description, isImported)
+            else -> GenericProduct(description, isImported)
+        }
     }
 
     companion object {

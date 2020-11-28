@@ -1,8 +1,7 @@
 package it.dmegna.ksalestaxes.unit.products
 
 import it.dmegna.ksalestaxes.products.*
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
 import org.junit.Test
 import kotlin.reflect.KClass
 
@@ -41,30 +40,34 @@ class ProductFactoryTest {
     }
 
     @Test
-    fun `keeps descriptions`() {
-        assertEquals("book", productFactory.from("book").description)
-        assertEquals("music CD", productFactory.from("music CD").description)
-        assertEquals("bottle of perfume", productFactory.from("bottle of perfume").description)
+    fun `imported products description are normalized`() {
+        "imported box of chocolates" shouldHaveDescription "box of chocolates"
+        "box of imported chocolates" shouldHaveDescription "box of chocolates"
     }
 
     @Test
-    fun `imported products`() {
-        assertEquals(
-            FoodProduct("imported box of chocolates", isImported = true),
-            productFactory.from("imported box of chocolates")
-        )
-        assertEquals(
-            GenericProduct("imported bottle of perfume", isImported = true),
-            productFactory.from("imported bottle of perfume")
-        )
-        assertEquals(
-            FoodProduct("box of imported chocolates", isImported = true),
-            productFactory.from("box of imported chocolates")
-        )
+    fun `not imported products description are untouched`() {
+        "book" shouldHaveDescription "book"
+        "music CD" shouldHaveDescription "music CD"
+        "bottle of perfume" shouldHaveDescription "bottle of perfume"
     }
 
-    private infix fun String.shouldBecomeA(kClass: KClass<out Product>) {
+    @Test
+    fun `imported products flag`() {
+        assertTrue(productFactory.from("imported box of chocolates").isImported)
+        assertTrue(productFactory.from("imported bottle of perfume").isImported)
+        assertTrue(productFactory.from("box of imported chocolates").isImported)
+        assertFalse(productFactory.from("box of chocolates").isImported)
+        assertFalse(productFactory.from("bottle of perfume").isImported)
+    }
+
+    private infix fun String.shouldBecomeA(expectedType: KClass<out Product>) {
         val product = productFactory.from(this)
-        assertTrue("$product should become a ${kClass.simpleName}", kClass.isInstance(product))
+        assertTrue("$product should become a ${expectedType.simpleName}", expectedType.isInstance(product))
+    }
+
+    private infix fun String.shouldHaveDescription(expectedDescription: String) {
+        val product = productFactory.from(this)
+        assertEquals(expectedDescription, product.description)
     }
 }
