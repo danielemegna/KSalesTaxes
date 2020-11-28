@@ -1,6 +1,7 @@
 package it.dmegna.ksalestaxes.taxes
 
 import it.dmegna.ksalestaxes.products.*
+import it.dmegna.ksalestaxes.taxes.data.TaxRate
 
 class HappyLandTaxRules : TaxRules {
     override fun getTaxRateFor(product: Product): TaxRate {

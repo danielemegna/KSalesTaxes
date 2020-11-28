@@ -5,8 +5,8 @@ import it.dmegna.ksalestaxes.products.FoodProduct
 import it.dmegna.ksalestaxes.products.GenericProduct
 import it.dmegna.ksalestaxes.products.MedicalProduct
 import it.dmegna.ksalestaxes.taxes.HappyLandTaxRules
-import it.dmegna.ksalestaxes.taxes.TaxRate
 import it.dmegna.ksalestaxes.taxes.TaxRules
+import it.dmegna.ksalestaxes.taxes.data.TaxRate
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
