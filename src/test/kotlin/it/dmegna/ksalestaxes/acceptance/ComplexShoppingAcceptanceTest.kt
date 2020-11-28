@@ -1,6 +1,5 @@
 package it.dmegna.ksalestaxes.acceptance
 
-import it.dmegna.ksalestaxes.CashRegister
 import it.dmegna.ksalestaxes.Receipt
 import it.dmegna.ksalestaxes.ShoppingBasket
 import org.junit.Assert.assertEquals
@@ -8,7 +7,7 @@ import org.junit.Test
 
 class ComplexShoppingAcceptanceTest {
 
-    private val cashRegister = CashRegister()
+    private val cashRegister = AcceptanceUtil.buildHappyLandCashRegister()
 
     @Test
     fun `working with basic taxed products`() {
