@@ -22,13 +22,14 @@ class HappyLandTaxesRoundRuleTest {
     @Test
     fun `round up to the nearest 0,05`() {
         assertEquals(TaxAmount(9.10), taxesRoundRule.round(TaxAmount(9.11)))
+        assertEquals(TaxAmount(9.15), taxesRoundRule.round(TaxAmount(9.125)))
         assertEquals(TaxAmount(9.15), taxesRoundRule.round(TaxAmount(9.13)))
         assertEquals(TaxAmount(9.15), taxesRoundRule.round(TaxAmount(9.16)))
         assertEquals(TaxAmount(9.15), taxesRoundRule.round(TaxAmount(9.17)))
         assertEquals(TaxAmount(9.20), taxesRoundRule.round(TaxAmount(9.18)))
         assertEquals(TaxAmount(9.20), taxesRoundRule.round(TaxAmount(9.19)))
-        assertEquals(TaxAmount(2.35), taxesRoundRule.round(TaxAmount(2.374)))
-        assertEquals(TaxAmount(2.80), taxesRoundRule.round(TaxAmount(2.799)))
-        assertEquals(TaxAmount(1.40), taxesRoundRule.round(TaxAmount(1.3995)))
+        assertEquals(TaxAmount(9.35), taxesRoundRule.round(TaxAmount(9.374)))
+        assertEquals(TaxAmount(9.40), taxesRoundRule.round(TaxAmount(9.3995)))
+        assertEquals(TaxAmount(9.80), taxesRoundRule.round(TaxAmount(9.799)))
     }
 }
