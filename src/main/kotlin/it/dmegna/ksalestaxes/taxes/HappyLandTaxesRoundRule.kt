@@ -1,12 +1,12 @@
 package it.dmegna.ksalestaxes.taxes
 
 import it.dmegna.ksalestaxes.taxes.data.TaxAmount
-import kotlin.math.roundToInt
+import kotlin.math.ceil
 
 class HappyLandTaxesRoundRule : TaxesRoundRule {
 
     override fun round(taxAmount: TaxAmount): TaxAmount {
-        val rounded = ((taxAmount.value * 20.0).roundToInt()) / 20.0
+        val rounded = (ceil(taxAmount.value / 0.05) * 0.05)
         return TaxAmount.of(rounded)
     }
 
