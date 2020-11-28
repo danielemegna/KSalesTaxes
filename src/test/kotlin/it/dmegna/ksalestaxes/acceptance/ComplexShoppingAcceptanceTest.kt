@@ -3,6 +3,7 @@ package it.dmegna.ksalestaxes.acceptance
 import it.dmegna.ksalestaxes.Receipt
 import it.dmegna.ksalestaxes.ShoppingBasket
 import org.junit.Assert.assertEquals
+import org.junit.Ignore
 import org.junit.Test
 
 class ComplexShoppingAcceptanceTest {
@@ -41,7 +42,22 @@ class ComplexShoppingAcceptanceTest {
         assertEquals(29.83, actualReceipt.getTotal(), 0.0)
     }
 
-    // working with imported products
+    @Ignore("WIP")
+    @Test
+    fun `working with imported products`() {
+        val shoppingBasket = ShoppingBasket().apply {
+            add(qty = 1, description = "imported box of chocolates", unitNetPrice = 10.00)
+            add(qty = 1, description = "imported bottle of perfume", unitNetPrice = 47.50)
+        }
+
+        val actualReceipt = cashRegister.receiptFor(shoppingBasket)
+
+        assertEquals(Receipt.Item(1, "imported box of chocolates", 10.50), actualReceipt.items[0])
+        assertEquals(Receipt.Item(1, "imported bottle of perfume", 54.65), actualReceipt.items[1])
+        assertEquals(7.65, actualReceipt.salesTaxes, 0.0)
+        assertEquals(65.15, actualReceipt.getTotal(), 0.0)
+    }
+
     // working with imported taxed products
     // test mixed untaxed, basic taxed and imported
 }
