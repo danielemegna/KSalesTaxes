@@ -20,8 +20,8 @@ class ComplexShoppingAcceptanceTest {
 
         assertEquals(Receipt.Item(1, "music CD", 16.49), actualReceipt.items[0])
         assertEquals(Receipt.Item(1, "bottle of perfume", 20.89), actualReceipt.items[1])
-        assertEquals(1.5 + 1.9, actualReceipt.salesTaxes, 0.0)
-        assertEquals(16.49 + 20.89, actualReceipt.getTotal(), 0.0)
+        assertEquals(3.4, actualReceipt.salesTaxes, 0.0)
+        assertEquals(37.38, actualReceipt.total, 0.0)
     }
 
     @Test
@@ -38,7 +38,7 @@ class ComplexShoppingAcceptanceTest {
         assertEquals(Receipt.Item(1, "music CD", 16.49), actualReceipt.items[1])
         assertEquals(Receipt.Item(1, "chocolate bar", 0.85), actualReceipt.items[2])
         assertEquals(1.50, actualReceipt.salesTaxes, 0.0)
-        assertEquals(29.83, actualReceipt.getTotal(), 0.0)
+        assertEquals(29.83, actualReceipt.total, 0.0)
     }
 
     @Test
@@ -53,9 +53,8 @@ class ComplexShoppingAcceptanceTest {
         assertEquals(Receipt.Item(1, "imported box of chocolates", 10.50), actualReceipt.items[0])
         assertEquals(Receipt.Item(1, "imported bottle of perfume", 54.65), actualReceipt.items[1])
         assertEquals(7.65, actualReceipt.salesTaxes, 0.0)
-        assertEquals(65.15, actualReceipt.getTotal(), 0.0)
+        assertEquals(65.15, actualReceipt.total, 0.0)
     }
 
-    // working with imported taxed products
     // test mixed untaxed, basic taxed and imported
 }

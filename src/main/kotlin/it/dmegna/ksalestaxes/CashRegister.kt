@@ -4,6 +4,8 @@ import it.dmegna.ksalestaxes.products.ProductFactory
 import it.dmegna.ksalestaxes.taxes.TaxAmountCalculator
 import it.dmegna.ksalestaxes.taxes.TaxRules
 import it.dmegna.ksalestaxes.taxes.data.NetPrice
+import it.dmegna.ksalestaxes.taxes.data.TaxAmount
+import it.dmegna.ksalestaxes.taxes.data.TaxedPrice
 
 class CashRegister(
     private val productFactory: ProductFactory,
@@ -12,20 +14,28 @@ class CashRegister(
 ) {
     fun receiptFor(shoppingBasket: ShoppingBasket): Receipt {
         val items = mutableListOf<Receipt.Item>()
-        var salesTaxes = 0.0
+        var totalTaxAmount = TaxAmount.of(0.0)
+        var totalTaxedPrice = TaxedPrice.of(0.0)
 
-        shoppingBasket.items.forEach { shoppingBasketItem ->
-            val product = productFactory.from(shoppingBasketItem.description)
+        shoppingBasket.items.forEach {
+            val product = productFactory.from(it.description)
             val taxRule = taxRules.getTaxRateFor(product)
-            val unitNetPrice = NetPrice.of(shoppingBasketItem.unitNetPrice)
-            val unitItemTaxes = taxAmountCalculator.getFor(taxRule, unitNetPrice)
-            val taxedUnitPrice = unitNetPrice + unitItemTaxes
-            val taxedTotalPrice = taxedUnitPrice * shoppingBasketItem.qty
-            items.add(Receipt.Item(shoppingBasketItem.qty, shoppingBasketItem.description, taxedTotalPrice.value))
-            salesTaxes += (unitItemTaxes * shoppingBasketItem.qty).value
+            val unitNetPrice = NetPrice.of(it.unitNetPrice)
+
+            val unitTaxAmount = taxAmountCalculator.getFor(taxRule, unitNetPrice)
+            val unitTaxedPrice = unitNetPrice + unitTaxAmount
+
+            val taxedPrice = unitTaxedPrice * it.qty
+            val taxAmount = unitTaxAmount * it.qty
+
+            val receiptItem = Receipt.Item(it.qty, it.description, taxedPrice.value)
+            items.add(receiptItem)
+
+            totalTaxAmount += taxAmount
+            totalTaxedPrice += taxedPrice
         }
 
-        return Receipt(items, salesTaxes)
+        return Receipt(items, totalTaxAmount.value, totalTaxedPrice.value)
     }
 
 }
