@@ -11,6 +11,3 @@ class TaxAmountCalculator(private val taxesRoundRule: TaxesRoundRule) {
     }
 }
 
-private operator fun NetPrice.times(taxRate: TaxRate): TaxAmount {
-    return TaxAmount(this.value * taxRate.value)
-}

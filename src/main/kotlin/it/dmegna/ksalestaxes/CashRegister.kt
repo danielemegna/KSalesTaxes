@@ -14,23 +14,19 @@ class CashRegister(
         val items = mutableListOf<Receipt.Item>()
         var salesTaxes = 0.0
 
-        shoppingBasket.items.forEach {
-            val unitItemTaxes = calculateUnitItemTaxesFor(it)
-            val taxedUnitPrice = it.unitNetPrice + unitItemTaxes
-            val taxedTotalPrice = taxedUnitPrice * it.qty
-            val normalized = "%.2f".format(taxedTotalPrice).toDouble()
-            items.add(Receipt.Item(it.qty, it.description, normalized))
-            salesTaxes += unitItemTaxes * it.qty
+        shoppingBasket.items.forEach { shoppingBasketItem ->
+            val product = productFactory.from(shoppingBasketItem.description)
+            val taxRule = taxRules.getTaxRateFor(product)
+            val unitNetPrice = NetPrice(shoppingBasketItem.unitNetPrice)
+            val unitItemTaxes = taxAmountCalculator.getFor(taxRule, unitNetPrice)
+            val taxedUnitPrice = unitNetPrice + unitItemTaxes
+            val taxedTotalPrice = taxedUnitPrice * shoppingBasketItem.qty
+            val normalized = "%.2f".format(taxedTotalPrice.value).toDouble()
+            items.add(Receipt.Item(shoppingBasketItem.qty, shoppingBasketItem.description, normalized))
+            salesTaxes += (unitItemTaxes * shoppingBasketItem.qty).value
         }
 
         return Receipt(items, salesTaxes)
-    }
-
-    private fun calculateUnitItemTaxesFor(it: ShoppingBasket.Item): Double {
-        val product = productFactory.from(it.description)
-        val taxRate = taxRules.getTaxRateFor(product)
-        val taxAmount = taxAmountCalculator.getFor(taxRate, NetPrice(it.unitNetPrice))
-        return taxAmount.value
     }
 
 }
