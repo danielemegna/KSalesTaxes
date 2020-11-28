@@ -4,10 +4,10 @@ import it.dmegna.ksalestaxes.taxes.data.NetPrice
 import it.dmegna.ksalestaxes.taxes.data.TaxAmount
 import it.dmegna.ksalestaxes.taxes.data.TaxRate
 
-class TaxAmountCalculator(private val roundRule: TaxesRoundRule) {
+class TaxAmountCalculator(private val taxesRoundRule: TaxesRoundRule) {
     fun getFor(taxRate: TaxRate, netPrice: NetPrice): TaxAmount {
         val taxAmount = netPrice * taxRate
-        return roundRule.round(taxAmount)
+        return taxesRoundRule.round(taxAmount)
     }
 }
 
