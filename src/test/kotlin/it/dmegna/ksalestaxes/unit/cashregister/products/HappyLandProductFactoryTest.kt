@@ -5,9 +5,9 @@ import org.junit.Assert.*
 import org.junit.Test
 import kotlin.reflect.KClass
 
-class ProductFactoryTest {
+class HappyLandProductFactoryTest {
 
-    private val productFactory = ProductFactory()
+    private val productFactory: ProductFactory = HappyLandProductFactory()
 
     @Test
     fun `generic products`() {

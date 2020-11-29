@@ -5,7 +5,7 @@ import it.dmegna.ksalestaxes.ShoppingSession
 import it.dmegna.ksalestaxes.ShoppingSessionInputProvider
 import it.dmegna.ksalestaxes.ToTextReceiptFormatter
 import it.dmegna.ksalestaxes.cashregister.CashRegister
-import it.dmegna.ksalestaxes.cashregister.products.ProductFactory
+import it.dmegna.ksalestaxes.cashregister.products.HappyLandProductFactory
 import it.dmegna.ksalestaxes.cashregister.taxes.HappyLandTaxRules
 import it.dmegna.ksalestaxes.cashregister.taxes.HappyLandTaxesRoundRule
 import it.dmegna.ksalestaxes.cashregister.taxes.TaxAmountCalculator
@@ -101,7 +101,7 @@ class E2ETest {
             inputProvider = StubShoppingSessionInputProvider(input),
             shoppingBasketAdapter = FromTextShoppingBasketAdapter(),
             cashRegister = CashRegister(
-                productFactory = ProductFactory(),
+                productFactory = HappyLandProductFactory(),
                 taxRules = HappyLandTaxRules(),
                 taxAmountCalculator = TaxAmountCalculator(
                     taxesRoundRule = HappyLandTaxesRoundRule()
