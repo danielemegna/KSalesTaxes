@@ -14,7 +14,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.lang.System.lineSeparator
 
-class E2ETest {
+class TextShoppingSessionAcceptanceTest {
 
     @Test
     fun `first scenario`() {

@@ -1,14 +1,20 @@
 package it.dmegna.ksalestaxes.acceptance.shoppingbasket
 
+import it.dmegna.ksalestaxes.shoppingbasket.CashRegister
 import it.dmegna.ksalestaxes.shoppingbasket.inbound.ShoppingBasket
 import it.dmegna.ksalestaxes.shoppingbasket.inbound.ShoppingBasket.Item
 import it.dmegna.ksalestaxes.shoppingbasket.outbound.Receipt
+import it.dmegna.ksalestaxes.shoppingbasket.outbound.ReceiptFactory
+import it.dmegna.ksalestaxes.shoppingbasket.products.HappyLandProductFactory
+import it.dmegna.ksalestaxes.shoppingbasket.taxes.HappyLandTaxRules
+import it.dmegna.ksalestaxes.shoppingbasket.taxes.HappyLandTaxesRoundRule
+import it.dmegna.ksalestaxes.shoppingbasket.taxes.TaxAmountCalculator
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class ComplexShoppingAcceptanceTest {
 
-    private val cashRegister = AcceptanceUtil.buildHappyLandCashRegister()
+    private val cashRegister = buildHappyLandCashRegister()
 
     @Test
     fun `working with basic taxed products`() {
@@ -88,4 +94,14 @@ class ComplexShoppingAcceptanceTest {
         assertEquals(98.38, actualReceipt.total, 0.0)
     }
 
+    private fun buildHappyLandCashRegister(): CashRegister {
+        return CashRegister(
+            productFactory = HappyLandProductFactory(),
+            taxRules = HappyLandTaxRules(),
+            taxAmountCalculator = TaxAmountCalculator(
+                taxesRoundRule = HappyLandTaxesRoundRule()
+            ),
+            receiptFactory = ReceiptFactory()
+        )
+    }
 }
