@@ -1,4 +1,4 @@
-package it.dmegna.ksalestaxes.taxes.data
+package it.dmegna.ksalestaxes.cashregister.taxes.data
 
 data class TaxedPrice private constructor(val value: Double) {
     operator fun times(n: Int): TaxedPrice = of(value * n)

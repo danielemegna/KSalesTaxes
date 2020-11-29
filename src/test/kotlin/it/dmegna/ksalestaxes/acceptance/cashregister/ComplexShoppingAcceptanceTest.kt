@@ -1,7 +1,7 @@
-package it.dmegna.ksalestaxes.acceptance
+package it.dmegna.ksalestaxes.acceptance.cashregister
 
-import it.dmegna.ksalestaxes.Receipt
-import it.dmegna.ksalestaxes.ShoppingBasket
+import it.dmegna.ksalestaxes.cashregister.Receipt
+import it.dmegna.ksalestaxes.cashregister.ShoppingBasket
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

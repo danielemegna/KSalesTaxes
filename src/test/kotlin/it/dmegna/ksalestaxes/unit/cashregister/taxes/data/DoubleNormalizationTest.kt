@@ -1,9 +1,9 @@
-package it.dmegna.ksalestaxes.unit.taxes.data
+package it.dmegna.ksalestaxes.unit.cashregister.taxes.data
 
-import it.dmegna.ksalestaxes.taxes.data.NetPrice
-import it.dmegna.ksalestaxes.taxes.data.TaxAmount
-import it.dmegna.ksalestaxes.taxes.data.TaxRate
-import it.dmegna.ksalestaxes.taxes.data.TaxedPrice
+import it.dmegna.ksalestaxes.cashregister.taxes.data.NetPrice
+import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxAmount
+import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxRate
+import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxedPrice
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

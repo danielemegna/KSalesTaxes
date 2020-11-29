@@ -1,12 +1,12 @@
-package it.dmegna.ksalestaxes
+package it.dmegna.ksalestaxes.cashregister
 
-import it.dmegna.ksalestaxes.products.Product
-import it.dmegna.ksalestaxes.products.ProductFactory
-import it.dmegna.ksalestaxes.taxes.TaxAmountCalculator
-import it.dmegna.ksalestaxes.taxes.TaxRules
-import it.dmegna.ksalestaxes.taxes.data.NetPrice
-import it.dmegna.ksalestaxes.taxes.data.TaxAmount
-import it.dmegna.ksalestaxes.taxes.data.TaxedPrice
+import it.dmegna.ksalestaxes.cashregister.products.Product
+import it.dmegna.ksalestaxes.cashregister.products.ProductFactory
+import it.dmegna.ksalestaxes.cashregister.taxes.TaxAmountCalculator
+import it.dmegna.ksalestaxes.cashregister.taxes.TaxRules
+import it.dmegna.ksalestaxes.cashregister.taxes.data.NetPrice
+import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxAmount
+import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxedPrice
 
 class CashRegister(
     private val productFactory: ProductFactory,

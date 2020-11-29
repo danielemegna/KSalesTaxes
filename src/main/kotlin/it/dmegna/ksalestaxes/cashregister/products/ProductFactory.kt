@@ -1,4 +1,4 @@
-package it.dmegna.ksalestaxes.products
+package it.dmegna.ksalestaxes.cashregister.products
 
 class ProductFactory {
 

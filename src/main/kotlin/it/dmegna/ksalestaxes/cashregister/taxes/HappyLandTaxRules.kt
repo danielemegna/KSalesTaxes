@@ -1,7 +1,7 @@
-package it.dmegna.ksalestaxes.taxes
+package it.dmegna.ksalestaxes.cashregister.taxes
 
-import it.dmegna.ksalestaxes.products.*
-import it.dmegna.ksalestaxes.taxes.data.TaxRate
+import it.dmegna.ksalestaxes.cashregister.products.*
+import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxRate
 
 class HappyLandTaxRules : TaxRules {
     override fun getTaxRateFor(product: Product): TaxRate {

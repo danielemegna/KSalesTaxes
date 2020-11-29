@@ -1,6 +1,6 @@
-package it.dmegna.ksalestaxes.unit.products
+package it.dmegna.ksalestaxes.unit.cashregister.products
 
-import it.dmegna.ksalestaxes.products.*
+import it.dmegna.ksalestaxes.cashregister.products.*
 import org.junit.Assert.*
 import org.junit.Test
 import kotlin.reflect.KClass

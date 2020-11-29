@@ -1,12 +1,12 @@
-package it.dmegna.ksalestaxes.unit.taxes
+package it.dmegna.ksalestaxes.unit.cashregister.taxes
 
-import it.dmegna.ksalestaxes.products.Book
-import it.dmegna.ksalestaxes.products.FoodProduct
-import it.dmegna.ksalestaxes.products.GenericProduct
-import it.dmegna.ksalestaxes.products.MedicalProduct
-import it.dmegna.ksalestaxes.taxes.HappyLandTaxRules
-import it.dmegna.ksalestaxes.taxes.TaxRules
-import it.dmegna.ksalestaxes.taxes.data.TaxRate
+import it.dmegna.ksalestaxes.cashregister.products.Book
+import it.dmegna.ksalestaxes.cashregister.products.FoodProduct
+import it.dmegna.ksalestaxes.cashregister.products.GenericProduct
+import it.dmegna.ksalestaxes.cashregister.products.MedicalProduct
+import it.dmegna.ksalestaxes.cashregister.taxes.HappyLandTaxRules
+import it.dmegna.ksalestaxes.cashregister.taxes.TaxRules
+import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxRate
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

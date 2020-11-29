@@ -1,4 +1,4 @@
-package it.dmegna.ksalestaxes.taxes.data
+package it.dmegna.ksalestaxes.cashregister.taxes.data
 
 internal class DoubleUtil {
     companion object {

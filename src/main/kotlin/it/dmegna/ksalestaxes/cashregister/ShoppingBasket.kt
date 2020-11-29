@@ -1,4 +1,4 @@
-package it.dmegna.ksalestaxes
+package it.dmegna.ksalestaxes.cashregister
 
 class ShoppingBasket {
 

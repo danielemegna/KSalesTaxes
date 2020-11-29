@@ -1,10 +1,10 @@
-package it.dmegna.ksalestaxes.unit.taxes
+package it.dmegna.ksalestaxes.unit.cashregister.taxes
 
-import it.dmegna.ksalestaxes.taxes.TaxAmountCalculator
-import it.dmegna.ksalestaxes.taxes.TaxesRoundRule
-import it.dmegna.ksalestaxes.taxes.data.NetPrice
-import it.dmegna.ksalestaxes.taxes.data.TaxAmount
-import it.dmegna.ksalestaxes.taxes.data.TaxRate
+import it.dmegna.ksalestaxes.cashregister.taxes.TaxAmountCalculator
+import it.dmegna.ksalestaxes.cashregister.taxes.TaxesRoundRule
+import it.dmegna.ksalestaxes.cashregister.taxes.data.NetPrice
+import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxAmount
+import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxRate
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
