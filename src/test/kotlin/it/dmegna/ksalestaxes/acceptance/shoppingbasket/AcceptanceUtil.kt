@@ -1,6 +1,7 @@
 package it.dmegna.ksalestaxes.acceptance.shoppingbasket
 
 import it.dmegna.ksalestaxes.shoppingbasket.CashRegister
+import it.dmegna.ksalestaxes.shoppingbasket.outbound.ReceiptFactory
 import it.dmegna.ksalestaxes.shoppingbasket.products.HappyLandProductFactory
 import it.dmegna.ksalestaxes.shoppingbasket.taxes.HappyLandTaxRules
 import it.dmegna.ksalestaxes.shoppingbasket.taxes.HappyLandTaxesRoundRule
@@ -14,7 +15,8 @@ class AcceptanceUtil {
                 taxRules = HappyLandTaxRules(),
                 taxAmountCalculator = TaxAmountCalculator(
                     taxesRoundRule = HappyLandTaxesRoundRule()
-                )
+                ),
+                receiptFactory = ReceiptFactory()
             )
         }
     }

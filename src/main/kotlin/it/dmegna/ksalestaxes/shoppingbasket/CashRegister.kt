@@ -2,35 +2,22 @@ package it.dmegna.ksalestaxes.shoppingbasket
 
 import it.dmegna.ksalestaxes.shoppingbasket.inbound.ShoppingBasket
 import it.dmegna.ksalestaxes.shoppingbasket.outbound.Receipt
+import it.dmegna.ksalestaxes.shoppingbasket.outbound.ReceiptFactory
 import it.dmegna.ksalestaxes.shoppingbasket.products.ProductFactory
 import it.dmegna.ksalestaxes.shoppingbasket.taxes.TaxAmountCalculator
 import it.dmegna.ksalestaxes.shoppingbasket.taxes.TaxRules
 import it.dmegna.ksalestaxes.shoppingbasket.taxes.amounts.NetPrice
-import it.dmegna.ksalestaxes.shoppingbasket.taxes.amounts.TaxAmount
-import it.dmegna.ksalestaxes.shoppingbasket.taxes.amounts.TaxedPrice
 
 class CashRegister(
     private val productFactory: ProductFactory,
     private val taxRules: TaxRules,
-    private val taxAmountCalculator: TaxAmountCalculator
+    private val taxAmountCalculator: TaxAmountCalculator,
+    private val receiptFactory: ReceiptFactory
 ) : ShoppingBasketProcessor {
 
     override fun process(shoppingBasket: ShoppingBasket): Receipt {
         val itemsWithTax = shoppingBasket.items.map { it.withTax() }
-
-        val totalTaxAmount = itemsWithTax
-            .map { it.taxAmount() }
-            .reduce(TaxAmount::plus)
-
-        val totalTaxedPrice = itemsWithTax
-            .map { it.taxedPrice() }
-            .reduce(TaxedPrice::plus)
-
-        val items = itemsWithTax.map {
-            Receipt.Item(it.qty, it.description, it.taxedPrice().value)
-        }
-
-        return Receipt(items, totalTaxAmount.value, totalTaxedPrice.value)
+        return receiptFactory.from(itemsWithTax)
     }
 
     private fun ShoppingBasket.Item.withTax(): ShoppingBasketItemWithTax {
