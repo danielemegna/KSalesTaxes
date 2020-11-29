@@ -17,30 +17,36 @@ class CashRegister(
 ) : ShoppingBasketProcessor {
 
     override fun process(shoppingBasket: ShoppingBasket): Receipt {
-        val items = mutableListOf<Receipt.Item>()
-        var totalTaxAmount = TaxAmount.of(0.0)
-        var totalTaxedPrice = TaxedPrice.of(0.0)
+        val itemsWithTax = shoppingBasket.items.map { it.withTax() }
 
-        shoppingBasket.items.forEach {
-            val product = productFactory.from(it.description)
-            val taxRule = taxRules.getTaxRateFor(product)
-            val unitNetPrice = NetPrice.of(it.unitNetPrice)
+        val totalTaxAmount = itemsWithTax
+            .map { it.taxAmount() }
+            .reduce(TaxAmount::plus)
 
-            val unitTaxAmount = taxAmountCalculator.getFor(taxRule, unitNetPrice)
-            val unitTaxedPrice = unitNetPrice + unitTaxAmount
+        val totalTaxedPrice = itemsWithTax
+            .map { it.taxedPrice() }
+            .reduce(TaxedPrice::plus)
 
-            val taxedPrice = unitTaxedPrice * it.qty
-            val taxAmount = unitTaxAmount * it.qty
-
-            val receiptItemDescription = receiptItemDescriptionFor(product)
-            val receiptItem = Receipt.Item(it.qty, receiptItemDescription, taxedPrice.value)
-            items.add(receiptItem)
-
-            totalTaxAmount += taxAmount
-            totalTaxedPrice += taxedPrice
+        val items = itemsWithTax.map {
+            Receipt.Item(it.qty, it.description, it.taxedPrice().value)
         }
 
         return Receipt(items, totalTaxAmount.value, totalTaxedPrice.value)
+    }
+
+    private fun ShoppingBasket.Item.withTax(): ShoppingBasketItemWithTax {
+        val product = productFactory.from(this.description)
+
+        val unitTaxAmount = taxAmountCalculator.getFor(
+            taxRate = taxRules.getTaxRateFor(product),
+            netPrice = NetPrice.of(this.unitNetPrice)
+        )
+        return ShoppingBasketItemWithTax(
+            qty = this.qty,
+            description = receiptItemDescriptionFor(product),
+            unitNetPrice = NetPrice.of(this.unitNetPrice),
+            unitTaxAmount = unitTaxAmount
+        )
     }
 
     private fun receiptItemDescriptionFor(it: Product): String {
