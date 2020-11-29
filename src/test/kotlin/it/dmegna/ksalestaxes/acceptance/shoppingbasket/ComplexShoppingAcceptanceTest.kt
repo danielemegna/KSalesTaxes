@@ -21,6 +21,7 @@ class ComplexShoppingAcceptanceTest {
 
         val actualReceipt = cashRegister.process(shoppingBasket)
 
+        assertEquals(2, actualReceipt.items.size)
         assertEquals(Receipt.Item(1, "music CD", 16.49), actualReceipt.items[0])
         assertEquals(Receipt.Item(1, "bottle of perfume", 20.89), actualReceipt.items[1])
         assertEquals(3.4, actualReceipt.salesTaxes, 0.0)
@@ -39,6 +40,7 @@ class ComplexShoppingAcceptanceTest {
 
         val actualReceipt = cashRegister.process(shoppingBasket)
 
+        assertEquals(3, actualReceipt.items.size)
         assertEquals(Receipt.Item(1, "book", 12.49), actualReceipt.items[0])
         assertEquals(Receipt.Item(1, "music CD", 16.49), actualReceipt.items[1])
         assertEquals(Receipt.Item(1, "chocolate bar", 0.85), actualReceipt.items[2])
@@ -57,6 +59,7 @@ class ComplexShoppingAcceptanceTest {
 
         val actualReceipt = cashRegister.process(shoppingBasket)
 
+        assertEquals(2, actualReceipt.items.size)
         assertEquals(Receipt.Item(1, "imported box of chocolates", 10.50), actualReceipt.items[0])
         assertEquals(Receipt.Item(1, "imported bottle of perfume", 54.65), actualReceipt.items[1])
         assertEquals(7.65, actualReceipt.salesTaxes, 0.0)
@@ -76,6 +79,7 @@ class ComplexShoppingAcceptanceTest {
 
         val actualReceipt = cashRegister.process(shoppingBasket)
 
+        assertEquals(4, actualReceipt.items.size)
         assertEquals(Receipt.Item(1, "imported bottle of perfume", 32.19), actualReceipt.items[0])
         assertEquals(Receipt.Item(1, "bottle of perfume", 20.89), actualReceipt.items[1])
         assertEquals(Receipt.Item(1, "packet of headache pills", 9.75), actualReceipt.items[2])
