@@ -1,6 +1,7 @@
 package it.dmegna.ksalestaxes
 
-import it.dmegna.ksalestaxes.cashregister.Receipt
+import it.dmegna.ksalestaxes.shoppingbasket.outbound.Receipt
+import it.dmegna.ksalestaxes.shoppingbasket.outbound.ReceiptFormatter
 
 class ToTextReceiptFormatter : ReceiptFormatter<String> {
     override fun format(receipt: Receipt): String {

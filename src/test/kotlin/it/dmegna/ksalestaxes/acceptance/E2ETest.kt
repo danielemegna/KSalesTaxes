@@ -4,11 +4,11 @@ import it.dmegna.ksalestaxes.FromTextShoppingBasketAdapter
 import it.dmegna.ksalestaxes.ShoppingSession
 import it.dmegna.ksalestaxes.ShoppingSessionInputProvider
 import it.dmegna.ksalestaxes.ToTextReceiptFormatter
-import it.dmegna.ksalestaxes.cashregister.CashRegister
-import it.dmegna.ksalestaxes.cashregister.products.HappyLandProductFactory
-import it.dmegna.ksalestaxes.cashregister.taxes.HappyLandTaxRules
-import it.dmegna.ksalestaxes.cashregister.taxes.HappyLandTaxesRoundRule
-import it.dmegna.ksalestaxes.cashregister.taxes.TaxAmountCalculator
+import it.dmegna.ksalestaxes.shoppingbasket.CashRegister
+import it.dmegna.ksalestaxes.shoppingbasket.products.HappyLandProductFactory
+import it.dmegna.ksalestaxes.shoppingbasket.taxes.HappyLandTaxRules
+import it.dmegna.ksalestaxes.shoppingbasket.taxes.HappyLandTaxesRoundRule
+import it.dmegna.ksalestaxes.shoppingbasket.taxes.TaxAmountCalculator
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

@@ -1,8 +1,10 @@
 package it.dmegna.ksalestaxes
 
-import it.dmegna.ksalestaxes.cashregister.Receipt
-import it.dmegna.ksalestaxes.cashregister.ShoppingBasket
-import it.dmegna.ksalestaxes.cashregister.ShoppingBasketProcessor
+import it.dmegna.ksalestaxes.shoppingbasket.ShoppingBasketProcessor
+import it.dmegna.ksalestaxes.shoppingbasket.inbound.ShoppingBasket
+import it.dmegna.ksalestaxes.shoppingbasket.inbound.ShoppingBasketAdapter
+import it.dmegna.ksalestaxes.shoppingbasket.outbound.Receipt
+import it.dmegna.ksalestaxes.shoppingbasket.outbound.ReceiptFormatter
 import it.dmegna.ksalestaxes.ShoppingSessionInputProvider as InputProvider
 
 class ShoppingSession<InputType, OutputType>(

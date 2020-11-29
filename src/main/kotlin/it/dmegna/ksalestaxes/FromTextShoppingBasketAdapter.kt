@@ -1,6 +1,7 @@
 package it.dmegna.ksalestaxes
 
-import it.dmegna.ksalestaxes.cashregister.ShoppingBasket
+import it.dmegna.ksalestaxes.shoppingbasket.inbound.ShoppingBasket
+import it.dmegna.ksalestaxes.shoppingbasket.inbound.ShoppingBasketAdapter
 
 class FromTextShoppingBasketAdapter : ShoppingBasketAdapter<String> {
     override fun from(values: Iterable<String>): ShoppingBasket {

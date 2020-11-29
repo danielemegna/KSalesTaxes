@@ -1,9 +1,9 @@
 package it.dmegna.ksalestaxes.unit
 
 import it.dmegna.ksalestaxes.FromTextShoppingBasketAdapter
-import it.dmegna.ksalestaxes.ShoppingBasketAdapter
-import it.dmegna.ksalestaxes.cashregister.ShoppingBasket
-import it.dmegna.ksalestaxes.cashregister.ShoppingBasket.Item
+import it.dmegna.ksalestaxes.shoppingbasket.inbound.ShoppingBasket
+import it.dmegna.ksalestaxes.shoppingbasket.inbound.ShoppingBasket.Item
+import it.dmegna.ksalestaxes.shoppingbasket.inbound.ShoppingBasketAdapter
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

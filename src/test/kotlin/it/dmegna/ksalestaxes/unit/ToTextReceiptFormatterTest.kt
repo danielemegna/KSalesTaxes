@@ -1,8 +1,8 @@
 package it.dmegna.ksalestaxes.unit
 
 import it.dmegna.ksalestaxes.ToTextReceiptFormatter
-import it.dmegna.ksalestaxes.cashregister.Receipt
-import it.dmegna.ksalestaxes.cashregister.Receipt.Item
+import it.dmegna.ksalestaxes.shoppingbasket.outbound.Receipt
+import it.dmegna.ksalestaxes.shoppingbasket.outbound.Receipt.Item
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
