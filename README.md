@@ -55,3 +55,14 @@ Output 3:
 Sales Taxes: 6.70
 Total: 74.68
 ```
+
+## Development notes
+
+Run tests with
+```
+$ ./gradlew test
+```
+or with a temporary alpine docker container
+```
+$ docker run --rm -v $PWD:/app -w /app openjdk:8-alpine ./gradlew test
+```
