@@ -11,20 +11,17 @@ class FromTextShoppingBasketAdapter : ShoppingBasketAdapter<String> {
     }
 
     private fun from(stringValue: String): ShoppingBasket.Item {
-        return VALUE_FORMAT_REGEX
-            .toRegex()
-            .find(stringValue)
-            ?.let {
-                val (qty, description, unitNetPrice) = it.destructured
-                return ShoppingBasket.Item(
-                    qty = qty.toInt(),
-                    description = description,
-                    unitNetPrice = unitNetPrice.toDouble()
-                )
-            }
-            ?: throw ShoppingBasketAdapter.InvalidInputException(
-                "Cannot adapt '$stringValue' to ShoppingBasket item"
+        val regexMatchResult = VALUE_FORMAT_REGEX.toRegex().find(stringValue)
+        return regexMatchResult?.let {
+            val (qty, description, unitNetPrice) = it.destructured
+            return ShoppingBasket.Item(
+                qty = qty.toInt(),
+                description = description,
+                unitNetPrice = unitNetPrice.toDouble()
             )
+        } ?: throw ShoppingBasketAdapter.InvalidInputException(
+            "Cannot adapt '$stringValue' to ShoppingBasket item"
+        )
     }
 
     companion object {
