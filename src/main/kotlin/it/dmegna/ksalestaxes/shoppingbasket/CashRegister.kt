@@ -2,7 +2,6 @@ package it.dmegna.ksalestaxes.shoppingbasket
 
 import it.dmegna.ksalestaxes.shoppingbasket.inbound.ShoppingBasket
 import it.dmegna.ksalestaxes.shoppingbasket.outbound.Receipt
-import it.dmegna.ksalestaxes.shoppingbasket.products.Product
 import it.dmegna.ksalestaxes.shoppingbasket.products.ProductFactory
 import it.dmegna.ksalestaxes.shoppingbasket.taxes.TaxAmountCalculator
 import it.dmegna.ksalestaxes.shoppingbasket.taxes.TaxRules
@@ -43,16 +42,10 @@ class CashRegister(
         )
         return ShoppingBasketItemWithTax(
             qty = this.qty,
-            description = receiptItemDescriptionFor(product),
+            description = product.description,
             unitNetPrice = NetPrice.of(this.unitNetPrice),
             unitTaxAmount = unitTaxAmount
         )
-    }
-
-    private fun receiptItemDescriptionFor(it: Product): String {
-        if (it.isImported)
-            return "imported ${it.description}"
-        return it.description
     }
 
 }

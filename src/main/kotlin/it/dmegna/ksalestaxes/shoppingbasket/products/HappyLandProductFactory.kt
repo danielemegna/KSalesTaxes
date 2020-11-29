@@ -3,9 +3,15 @@ package it.dmegna.ksalestaxes.shoppingbasket.products
 class HappyLandProductFactory : ProductFactory {
 
     override fun from(rawDescription: String): Product {
-        val description = normalize(rawDescription)
+        val normalizedDescription = normalize(rawDescription)
         val isImported = isImported(rawDescription)
-        return buildProduct(description, isImported)
+        val description = descriptionFor(normalizedDescription, isImported)
+        return when (normalizedDescription) {
+            in bookDescriptions -> Book(description, isImported)
+            in foodDescriptions -> FoodProduct(description, isImported)
+            in medicalDescriptions -> MedicalProduct(description, isImported)
+            else -> GenericProduct(description, isImported)
+        }
     }
 
     private fun normalize(description: String): String {
@@ -17,13 +23,9 @@ class HappyLandProductFactory : ProductFactory {
 
     private fun isImported(description: String) = description.contains(IMPORTED_PRODUCT_LABEL)
 
-    private fun buildProduct(description: String, isImported: Boolean): Product {
-        return when (description) {
-            in bookDescriptions -> Book(description, isImported)
-            in foodDescriptions -> FoodProduct(description, isImported)
-            in medicalDescriptions -> MedicalProduct(description, isImported)
-            else -> GenericProduct(description, isImported)
-        }
+    private fun descriptionFor(normalizedDescription: String, isImported: Boolean): String {
+        return if (!isImported) normalizedDescription
+        else "$IMPORTED_PRODUCT_LABEL $normalizedDescription"
     }
 
     private val bookDescriptions = setOf(

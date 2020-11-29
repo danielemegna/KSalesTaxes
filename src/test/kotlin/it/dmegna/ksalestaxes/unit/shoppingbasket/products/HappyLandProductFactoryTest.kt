@@ -40,16 +40,17 @@ class HappyLandProductFactoryTest {
     }
 
     @Test
-    fun `imported products description are normalized`() {
-        "imported box of chocolates" shouldHaveDescription "box of chocolates"
-        "box of imported chocolates" shouldHaveDescription "box of chocolates"
-    }
-
-    @Test
-    fun `not imported products description are untouched`() {
+    fun `keeps products description`() {
         "book" shouldHaveDescription "book"
         "music CD" shouldHaveDescription "music CD"
         "bottle of perfume" shouldHaveDescription "bottle of perfume"
+        "imported box of chocolates" shouldHaveDescription "imported box of chocolates"
+    }
+
+    @Test
+    fun `imported products description are normalized`() {
+        "box of imported chocolates" shouldHaveDescription "imported box of chocolates"
+        "pack of imported biscuits" shouldHaveDescription "imported pack of biscuits"
     }
 
     @Test
