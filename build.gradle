@@ -16,7 +16,7 @@ dependencies {
 }
 
 application {
-    mainClassName = 'it.dmegna.ksalestaxes.MainKt'
+    mainClass.set 'it.dmegna.ksalestaxes.MainKt'
 }
 
 run {
