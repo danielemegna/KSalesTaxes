@@ -66,3 +66,37 @@ or with a temporary alpine docker container
 ```
 $ docker run --rm -v $PWD:/app -w /app openjdk:8-alpine ./gradlew test
 ```
+
+## Console dry run (in beta :-))
+
+A main function is provided to run the application from console.
+
+![Main Screenshot](https://i.ibb.co/rmNFzLT/main-screenshot.png)
+
+Start it with:
+
+```
+$ ./gradlew run -q --console=plain
+```
+```
+Sales Taxes
+==========================================
+Please provide shopping item descriptions:
+```
+
+provide the input lines and send an empty chunk (just press enter) to terminate input and get the printed receipt
+
+```
+Sales Taxes
+==========================================
+Please provide shopping item descriptions:
+1 music CD at 14.99
+1 imported box of chocolates at 10.00
+1 bottle of perfume at 18.99
+
+1 music CD: 16.49
+1 imported box of chocolates: 10.50
+1 bottle of perfume: 20.89
+Sales Taxes: 3.90
+Total: 47.88
+```
