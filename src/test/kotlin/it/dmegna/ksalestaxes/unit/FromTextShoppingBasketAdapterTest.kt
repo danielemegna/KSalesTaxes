@@ -1,6 +1,7 @@
 package it.dmegna.ksalestaxes.unit
 
 import it.dmegna.ksalestaxes.FromTextShoppingBasketAdapter
+import it.dmegna.ksalestaxes.ShoppingBasketAdapter
 import it.dmegna.ksalestaxes.cashregister.ShoppingBasket
 import it.dmegna.ksalestaxes.cashregister.ShoppingBasket.Item
 import org.junit.Assert.assertEquals
@@ -34,17 +35,17 @@ class FromTextShoppingBasketAdapterTest {
         assertEquals(expected, actual)
     }
 
-    @Test(expected = IllegalArgumentException::class)
+    @Test(expected = ShoppingBasketAdapter.InvalidInputException::class)
     fun `invalid input`() {
         adapter.from(listOf("invalid"))
     }
 
-    @Test(expected = IllegalArgumentException::class)
+    @Test(expected = ShoppingBasketAdapter.InvalidInputException::class)
     fun `valid input format with invalid quantity value`() {
         adapter.from(listOf("one music CD at 14.99"))
     }
 
-    @Test(expected = IllegalArgumentException::class)
+    @Test(expected = ShoppingBasketAdapter.InvalidInputException::class)
     fun `valid input format with invalid price value`() {
         adapter.from(listOf("1 music CD at twenty"))
     }
