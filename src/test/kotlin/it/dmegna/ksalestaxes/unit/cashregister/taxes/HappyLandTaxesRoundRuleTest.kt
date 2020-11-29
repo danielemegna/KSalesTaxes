@@ -2,7 +2,7 @@ package it.dmegna.ksalestaxes.unit.cashregister.taxes
 
 import it.dmegna.ksalestaxes.cashregister.taxes.HappyLandTaxesRoundRule
 import it.dmegna.ksalestaxes.cashregister.taxes.TaxesRoundRule
-import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxAmount
+import it.dmegna.ksalestaxes.cashregister.taxes.amounts.TaxAmount
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -31,4 +31,5 @@ class HappyLandTaxesRoundRuleTest {
         assertEquals(TaxAmount.of(9.60), taxesRoundRule.round(TaxAmount.of(9.5625)))
         assertEquals(TaxAmount.of(9.80), taxesRoundRule.round(TaxAmount.of(9.799)))
     }
+
 }

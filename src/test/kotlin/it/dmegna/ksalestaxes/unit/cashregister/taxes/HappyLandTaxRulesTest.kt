@@ -6,7 +6,7 @@ import it.dmegna.ksalestaxes.cashregister.products.GenericProduct
 import it.dmegna.ksalestaxes.cashregister.products.MedicalProduct
 import it.dmegna.ksalestaxes.cashregister.taxes.HappyLandTaxRules
 import it.dmegna.ksalestaxes.cashregister.taxes.TaxRules
-import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxRate
+import it.dmegna.ksalestaxes.cashregister.taxes.amounts.TaxRate
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

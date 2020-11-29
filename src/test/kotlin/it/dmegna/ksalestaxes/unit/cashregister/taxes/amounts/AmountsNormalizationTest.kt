@@ -1,16 +1,16 @@
-package it.dmegna.ksalestaxes.unit.cashregister.taxes.data
+package it.dmegna.ksalestaxes.unit.cashregister.taxes.amounts
 
-import it.dmegna.ksalestaxes.cashregister.taxes.data.NetPrice
-import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxAmount
-import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxRate
-import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxedPrice
+import it.dmegna.ksalestaxes.cashregister.taxes.amounts.NetPrice
+import it.dmegna.ksalestaxes.cashregister.taxes.amounts.TaxAmount
+import it.dmegna.ksalestaxes.cashregister.taxes.amounts.TaxRate
+import it.dmegna.ksalestaxes.cashregister.taxes.amounts.TaxedPrice
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class DoubleNormalizationTest {
+class AmountsNormalizationTest {
 
     @Test
-    fun `wrapped amounts and price are normalized to 4 decimals`() {
+    fun `wrapped amounts, price and rates are normalized to 4 decimals`() {
         assertEquals(4.6, NetPrice.of(4.600000000000001).value, 0.0)
         assertEquals(12.6, NetPrice.of(12.600000000000001).value, 0.0)
         assertEquals(7.7, TaxAmount.of(7.699999999999999).value, 0.0)
@@ -20,4 +20,5 @@ class DoubleNormalizationTest {
         assertEquals(10.0, TaxRate.of(9.999999999999999).value, 0.0)
         assertEquals(13.0, TaxRate.of(12.999999999999999).value, 0.0)
     }
+
 }

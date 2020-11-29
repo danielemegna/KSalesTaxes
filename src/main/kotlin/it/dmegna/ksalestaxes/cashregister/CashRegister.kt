@@ -4,9 +4,9 @@ import it.dmegna.ksalestaxes.cashregister.products.Product
 import it.dmegna.ksalestaxes.cashregister.products.ProductFactory
 import it.dmegna.ksalestaxes.cashregister.taxes.TaxAmountCalculator
 import it.dmegna.ksalestaxes.cashregister.taxes.TaxRules
-import it.dmegna.ksalestaxes.cashregister.taxes.data.NetPrice
-import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxAmount
-import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxedPrice
+import it.dmegna.ksalestaxes.cashregister.taxes.amounts.NetPrice
+import it.dmegna.ksalestaxes.cashregister.taxes.amounts.TaxAmount
+import it.dmegna.ksalestaxes.cashregister.taxes.amounts.TaxedPrice
 
 class CashRegister(
     private val productFactory: ProductFactory,

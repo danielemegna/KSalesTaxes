@@ -1,9 +1,10 @@
 package it.dmegna.ksalestaxes.cashregister.taxes
 
 import it.dmegna.ksalestaxes.cashregister.products.*
-import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxRate
+import it.dmegna.ksalestaxes.cashregister.taxes.amounts.TaxRate
 
 class HappyLandTaxRules : TaxRules {
+
     override fun getTaxRateFor(product: Product): TaxRate {
         val baseTaxRate = getBaseTaxRateFor(product)
 
@@ -19,4 +20,5 @@ class HappyLandTaxRules : TaxRules {
             is Book, is FoodProduct, is MedicalProduct -> TaxRate.of(0.0)
         }
     }
+
 }

@@ -2,15 +2,15 @@ package it.dmegna.ksalestaxes.unit.cashregister.taxes
 
 import it.dmegna.ksalestaxes.cashregister.taxes.TaxAmountCalculator
 import it.dmegna.ksalestaxes.cashregister.taxes.TaxesRoundRule
-import it.dmegna.ksalestaxes.cashregister.taxes.data.NetPrice
-import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxAmount
-import it.dmegna.ksalestaxes.cashregister.taxes.data.TaxRate
+import it.dmegna.ksalestaxes.cashregister.taxes.amounts.NetPrice
+import it.dmegna.ksalestaxes.cashregister.taxes.amounts.TaxAmount
+import it.dmegna.ksalestaxes.cashregister.taxes.amounts.TaxRate
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class TaxAmountCalculatorTest {
 
-    private val calulator = TaxAmountCalculator(ProxyAsIsTaxesRoundRule())
+    private val calculator = TaxAmountCalculator(ProxyAsIsTaxesRoundRule())
 
     @Test
     fun `zero tax rate, zero tax amount`() {
@@ -36,7 +36,7 @@ class TaxAmountCalculatorTest {
     }
 
     private fun with(taxRate: Double, netPrice: Double) =
-        calulator.getFor(TaxRate.of(taxRate), NetPrice.of(netPrice))
+        calculator.getFor(TaxRate.of(taxRate), NetPrice.of(netPrice))
 
     private class ProxyAsIsTaxesRoundRule : TaxesRoundRule {
         override fun round(taxAmount: TaxAmount) = taxAmount
@@ -45,5 +45,6 @@ class TaxAmountCalculatorTest {
     private class StubTaxesRoundRule(val stubValue: Double) : TaxesRoundRule {
         override fun round(taxAmount: TaxAmount) = TaxAmount.of(stubValue)
     }
+
 }
 
