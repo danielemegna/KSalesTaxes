@@ -2,6 +2,7 @@ package it.dmegna.ksalestaxes.acceptance.cashregister
 
 import it.dmegna.ksalestaxes.cashregister.Receipt
 import it.dmegna.ksalestaxes.cashregister.ShoppingBasket
+import it.dmegna.ksalestaxes.cashregister.ShoppingBasket.Item
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -11,10 +12,12 @@ class SimpleShoppingAcceptanceTest {
 
     @Test
     fun `working with single untaxed products`() {
-        val shoppingBasket = ShoppingBasket().apply {
-            add(qty = 1, description = "book", unitNetPrice = 12.49)
-            add(qty = 1, description = "chocolate bar", unitNetPrice = 0.85)
-        }
+        val shoppingBasket = ShoppingBasket(
+            listOf(
+                Item(qty = 1, description = "book", unitNetPrice = 12.49),
+                Item(qty = 1, description = "chocolate bar", unitNetPrice = 0.85)
+            )
+        )
 
         val actualReceipt = cashRegister.receiptFor(shoppingBasket)
 
@@ -26,11 +29,13 @@ class SimpleShoppingAcceptanceTest {
 
     @Test
     fun `working with multiple untaxed products`() {
-        val shoppingBasket = ShoppingBasket().apply {
-            add(qty = 1, description = "book", unitNetPrice = 12.49)
-            add(qty = 3, description = "chocolate bar", unitNetPrice = 0.85)
-            add(qty = 2, description = "packet of headache pills", unitNetPrice = 9.75)
-        }
+        val shoppingBasket = ShoppingBasket(
+            listOf(
+                Item(qty = 1, description = "book", unitNetPrice = 12.49),
+                Item(qty = 3, description = "chocolate bar", unitNetPrice = 0.85),
+                Item(qty = 2, description = "packet of headache pills", unitNetPrice = 9.75)
+            )
+        )
 
         val actualReceipt = cashRegister.receiptFor(shoppingBasket)
 

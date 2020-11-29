@@ -2,6 +2,7 @@ package it.dmegna.ksalestaxes.acceptance.cashregister
 
 import it.dmegna.ksalestaxes.cashregister.Receipt
 import it.dmegna.ksalestaxes.cashregister.ShoppingBasket
+import it.dmegna.ksalestaxes.cashregister.ShoppingBasket.Item
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -11,10 +12,12 @@ class ComplexShoppingAcceptanceTest {
 
     @Test
     fun `working with basic taxed products`() {
-        val shoppingBasket = ShoppingBasket().apply {
-            add(qty = 1, description = "music CD", unitNetPrice = 14.99)
-            add(qty = 1, description = "bottle of perfume", unitNetPrice = 18.99)
-        }
+        val shoppingBasket = ShoppingBasket(
+            listOf(
+                Item(qty = 1, description = "music CD", unitNetPrice = 14.99),
+                Item(qty = 1, description = "bottle of perfume", unitNetPrice = 18.99)
+            )
+        )
 
         val actualReceipt = cashRegister.receiptFor(shoppingBasket)
 
@@ -26,11 +29,13 @@ class ComplexShoppingAcceptanceTest {
 
     @Test
     fun `mix taxed and untaxed products`() {
-        val shoppingBasket = ShoppingBasket().apply {
-            add(qty = 1, description = "book", unitNetPrice = 12.49)
-            add(qty = 1, description = "music CD", unitNetPrice = 14.99)
-            add(qty = 1, description = "chocolate bar", unitNetPrice = 0.85)
-        }
+        val shoppingBasket = ShoppingBasket(
+            listOf(
+                Item(qty = 1, description = "book", unitNetPrice = 12.49),
+                Item(qty = 1, description = "music CD", unitNetPrice = 14.99),
+                Item(qty = 1, description = "chocolate bar", unitNetPrice = 0.85)
+            )
+        )
 
         val actualReceipt = cashRegister.receiptFor(shoppingBasket)
 
@@ -43,10 +48,12 @@ class ComplexShoppingAcceptanceTest {
 
     @Test
     fun `working with imported products`() {
-        val shoppingBasket = ShoppingBasket().apply {
-            add(qty = 1, description = "imported box of chocolates", unitNetPrice = 10.00)
-            add(qty = 1, description = "imported bottle of perfume", unitNetPrice = 47.50)
-        }
+        val shoppingBasket = ShoppingBasket(
+            listOf(
+                Item(qty = 1, description = "imported box of chocolates", unitNetPrice = 10.00),
+                Item(qty = 1, description = "imported bottle of perfume", unitNetPrice = 47.50)
+            )
+        )
 
         val actualReceipt = cashRegister.receiptFor(shoppingBasket)
 
@@ -58,12 +65,14 @@ class ComplexShoppingAcceptanceTest {
 
     @Test
     fun `mixed basket`() {
-        val shoppingBasket = ShoppingBasket().apply {
-            add(qty = 1, description = "imported bottle of perfume", unitNetPrice = 27.99)
-            add(qty = 1, description = "bottle of perfume", unitNetPrice = 18.99)
-            add(qty = 1, description = "packet of headache pills", unitNetPrice = 9.75)
-            add(qty = 3, description = "box of imported chocolates", unitNetPrice = 11.25)
-        }
+        val shoppingBasket = ShoppingBasket(
+            listOf(
+                Item(qty = 1, description = "imported bottle of perfume", unitNetPrice = 27.99),
+                Item(qty = 1, description = "bottle of perfume", unitNetPrice = 18.99),
+                Item(qty = 1, description = "packet of headache pills", unitNetPrice = 9.75),
+                Item(qty = 3, description = "box of imported chocolates", unitNetPrice = 11.25)
+            )
+        )
 
         val actualReceipt = cashRegister.receiptFor(shoppingBasket)
 

@@ -1,12 +1,5 @@
 package it.dmegna.ksalestaxes.cashregister
 
-class ShoppingBasket {
-
-    val items = mutableListOf<Item>()
-
-    fun add(qty: Int, description: String, unitNetPrice: Double) {
-        items.add(Item(qty, description, unitNetPrice))
-    }
-
+data class ShoppingBasket(val items: List<Item>) {
     data class Item(val qty: Int, val description: String, val unitNetPrice: Double)
 }
