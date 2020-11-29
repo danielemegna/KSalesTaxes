@@ -100,7 +100,7 @@ class E2ETest {
         return ShoppingSession(
             inputProvider = StubShoppingSessionInputProvider(input),
             shoppingBasketAdapter = FromTextShoppingBasketAdapter(),
-            cashRegister = CashRegister(
+            shoppingBasketProcessor = CashRegister(
                 productFactory = HappyLandProductFactory(),
                 taxRules = HappyLandTaxRules(),
                 taxAmountCalculator = TaxAmountCalculator(

@@ -12,8 +12,9 @@ class CashRegister(
     private val productFactory: ProductFactory,
     private val taxRules: TaxRules,
     private val taxAmountCalculator: TaxAmountCalculator
-) {
-    fun receiptFor(shoppingBasket: ShoppingBasket): Receipt {
+) : ShoppingBasketProcessor {
+
+    override fun process(shoppingBasket: ShoppingBasket): Receipt {
         val items = mutableListOf<Receipt.Item>()
         var totalTaxAmount = TaxAmount.of(0.0)
         var totalTaxedPrice = TaxedPrice.of(0.0)
