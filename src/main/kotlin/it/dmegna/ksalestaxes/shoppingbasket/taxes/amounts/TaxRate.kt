@@ -5,5 +5,6 @@ data class TaxRate private constructor(val value: Double) {
 
     companion object {
         fun of(value: Double) = TaxRate(AmountsUtil.normalize(value))
+        fun zero() = of(0.0)
     }
 }
