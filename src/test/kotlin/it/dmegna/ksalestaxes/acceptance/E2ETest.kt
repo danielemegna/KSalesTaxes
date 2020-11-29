@@ -11,6 +11,7 @@ import it.dmegna.ksalestaxes.shoppingbasket.taxes.HappyLandTaxesRoundRule
 import it.dmegna.ksalestaxes.shoppingbasket.taxes.TaxAmountCalculator
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import java.lang.System.lineSeparator
 
 class E2ETest {
 
@@ -114,6 +115,6 @@ class E2ETest {
     class StubShoppingSessionInputProvider(
         private val stubbedInput: String
     ) : ShoppingSessionInputProvider<String> {
-        override fun readAll() = stubbedInput.split("\n")
+        override fun readAll() = stubbedInput.split(lineSeparator())
     }
 }

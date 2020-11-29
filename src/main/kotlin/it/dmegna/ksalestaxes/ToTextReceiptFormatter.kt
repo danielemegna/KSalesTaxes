@@ -2,6 +2,7 @@ package it.dmegna.ksalestaxes
 
 import it.dmegna.ksalestaxes.shoppingbasket.outbound.Receipt
 import it.dmegna.ksalestaxes.shoppingbasket.outbound.ReceiptFormatter
+import java.lang.System.lineSeparator
 
 class ToTextReceiptFormatter : ReceiptFormatter<String> {
     override fun format(receipt: Receipt): String {
@@ -9,7 +10,7 @@ class ToTextReceiptFormatter : ReceiptFormatter<String> {
             .map { this.format(it) }
             .plus("Sales Taxes: %.2f".format(receipt.salesTaxes))
             .plus("Total: %.2f".format(receipt.total))
-            .joinToString("\n")
+            .joinToString(lineSeparator())
     }
 
     private fun format(item: Receipt.Item): String {
