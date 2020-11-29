@@ -1,31 +1,35 @@
 package it.dmegna.ksalestaxes.shoppingbasket.products
 
+typealias CleanDescription = String
+
 class HappyLandProductFactory : ProductFactory {
 
-    override fun from(rawDescription: String): Product {
-        val normalizedDescription = normalize(rawDescription)
-        val isImported = isImported(rawDescription)
-        val description = descriptionFor(normalizedDescription, isImported)
-        return when (normalizedDescription) {
-            in bookDescriptions -> Book(description, isImported)
-            in foodDescriptions -> FoodProduct(description, isImported)
-            in medicalDescriptions -> MedicalProduct(description, isImported)
-            else -> GenericProduct(description, isImported)
+    override fun from(rawDescription: RawDescription): Product {
+        val cleanDescription = rawDescription.clean()
+        val isImported = rawDescription.isImported()
+        val normalizedDescription = cleanDescription.normalize(isImported)
+        return when (cleanDescription) {
+            in bookDescriptions -> Book(normalizedDescription, isImported)
+            in foodDescriptions -> FoodProduct(normalizedDescription, isImported)
+            in medicalDescriptions -> MedicalProduct(normalizedDescription, isImported)
+            else -> GenericProduct(normalizedDescription, isImported)
         }
     }
 
-    private fun normalize(description: String): String {
-        return description
+    private fun RawDescription.clean(): CleanDescription {
+        return this
             .split(" ")
             .filter { it != IMPORTED_PRODUCT_LABEL }
             .joinToString(" ")
     }
 
-    private fun isImported(description: String) = description.contains(IMPORTED_PRODUCT_LABEL)
+    private fun RawDescription.isImported() = this.contains(IMPORTED_PRODUCT_LABEL)
 
-    private fun descriptionFor(normalizedDescription: String, isImported: Boolean): String {
-        return if (!isImported) normalizedDescription
-        else "$IMPORTED_PRODUCT_LABEL $normalizedDescription"
+    private fun CleanDescription.normalize(isImported: Boolean): String {
+        return when (isImported) {
+            true -> "$IMPORTED_PRODUCT_LABEL $this"
+            false -> this
+        }
     }
 
     private val bookDescriptions = setOf(
