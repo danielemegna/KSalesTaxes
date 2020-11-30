@@ -58,11 +58,16 @@ Total: 74.68
 
 ## Development notes
 
+Requirements
+
+* `Java 8 (1.8.0_212) JDK` or highter
+* or with docker `openjdk:8-alpine` image
+
 Run tests with
 ```
 $ ./gradlew test
 ```
-or with a temporary alpine docker container
+or with a temporary docker container
 ```
 $ docker run --rm -v $PWD:/app -w /app openjdk:8-alpine ./gradlew test
 ```
@@ -77,6 +82,10 @@ Start it with:
 
 ```
 $ ./gradlew run -q --console=plain
+```
+or with a temporary docker container
+```
+$ docker run --rm -it -v $PWD:/app -w /app openjdk:8-alpine ./gradlew run -q --console=plain
 ```
 ```
 Sales Taxes
